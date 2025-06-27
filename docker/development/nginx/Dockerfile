@@ -1,0 +1,4 @@
+FROM nginx:alpine
+
+# Copiar configuración personalizada de Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
