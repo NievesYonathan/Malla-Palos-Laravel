@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->integer('t_doc');
+            $table->unsignedBigInteger('t_doc');
             $table->string('num_doc')->primary();
             $table->string('usu_nombre', 45);
             $table->string('usu_apellido', 45);
             $table->string('usu_celular', 10);
             $table->string('usu_email', 45);
             $table->string('usu_comentario', 200)->nullable();
-            $table->unsignedInteger('usu_cargo');
-            $table->unsignedInteger('usu_punto');
+            $table->unsignedBigInteger('usu_cargo');
+            $table->unsignedBigInteger('usu_punto');
             $table->enum('usu_estado', ['Activo', 'Inactivo']);
 
             // Índices y claves foráneas

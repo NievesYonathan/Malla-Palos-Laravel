@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('usu_num_doc', 15);
             $table->string('dia_origen',20);
-            $table->unsignedInteger('punto_origen_id');
+            $table->unsignedBigInteger('punto_origen_id');
             $table->timestamp('fecha_movimiento');
             $table->enum('estado_asignacion', ['Activo', 'Inactivo']);
             $table->enum('tipo_movimiento', ['Traslado','Nueva Asignación']);

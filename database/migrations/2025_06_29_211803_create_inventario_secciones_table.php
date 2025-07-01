@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('seguridad', function (Blueprint $table) {
-            $table->increments('id_seguridad');
-            $table->string('seg_credencial', 45);
-            $table->string('seg_usuario_id', 15)->index('fk_credencial_usu');
+        Schema::create('inventario_secciones', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 50);
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('seguridad');
+        Schema::dropIfExists('inventario_secciones');
     }
 };
