@@ -59,3 +59,8 @@ http://localhost
 
 ⚠️ Notas
 - Las credenciales de base de datos están definidas en tu .env, y se inyectan también en los contenedores.
+
+- Corregir problemas con rutas:
+    php artisan route:clear
+    php artisan config:clear
+    php artisan optimize:clear
