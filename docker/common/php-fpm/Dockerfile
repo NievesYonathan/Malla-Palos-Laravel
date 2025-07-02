@@ -1,10 +1,10 @@
 # Builds a dev-only layer on top of the production image
 # Etapa base común
-FROM php:8.2-fpm as base
+FROM php:8.4-fpm as base
 
 RUN apt-get update && apt-get install -y \
-    git zip unzip curl libzip-dev libpq-dev libonig-dev \
-    && docker-php-ext-install pdo_mysql zip
+    git zip unzip curl libzip-dev libpq-dev libonig-dev libicu-dev \
+    && docker-php-ext-install pdo_mysql zip intl
 
 WORKDIR /var/www
 
