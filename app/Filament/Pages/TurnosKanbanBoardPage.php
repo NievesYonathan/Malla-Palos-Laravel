@@ -18,17 +18,14 @@ class TurnosKanbanBoardPage extends KanbanBoardPage
 
     public function getSubject(): Builder
     {
-        return Asignacion_Turnos::query();
+        // return Asignacion_Turnos::query();
+        return Asignacion_Turnos::with(['turno', 'usuario']);
     }
 
-public function getResumenTurnoAttribute()
-{
-    return $this->turno?->tur_nombre . ' - ' . $this->tur_usu_fecha;
-}
     public function mount(): void
     {
         $this
-            ->titleField('nombre')
+            ->titleField('titulo_card')
             ->orderField('order_column')
             ->columnField('dia')
             ->columns([
@@ -48,24 +45,17 @@ public function getResumenTurnoAttribute()
                 'Viernes' => 'green',
                 'Sábado' => 'yellow',
                 'Domingo' => 'rose',
-            ])
-            ->cardAttributes([
-                'turnos_id' => 'Turno',
-                'usuarios_num_doc' => 'Usuario',
             ]);
     }
-
-    protected function getCardAttributes(): array
-    {
-        return [
-            'Turno' => function ($record) {
-                return (string) ($record->turno?->tur_nombre ?? '—');
-            },
-            'Empleado' => function ($record) {
-                return (string) ($record->usuario?->usu_nombre ?? '—');
-            },
-        ];
-    }
+    
+protected function getCardAttributes(): array
+{
+    return [
+        'Detalle' => function ($record) {
+            return $record->usuario?->usu_nombre . '<br><small>' . $record->turno?->tur_nombre . '</small>';
+        },
+    ];
+}
 
     public function createAction(Action $action): Action
     {

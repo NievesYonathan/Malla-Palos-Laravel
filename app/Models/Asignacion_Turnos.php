@@ -23,16 +23,22 @@ class Asignacion_Turnos extends Model
         return $this->belongsTo(Usuarios::class, 'usuarios_num_doc', 'num_doc');
     }
 
-    public function getTurnoNombreAttribute(): string
+    public function getTituloCardAttribute(): string
     {
-        $nombre = $this->turno?->tur_nombre ?? '—';
-        $descripcion = $this->turno?->tur_descripcion ?? '';
-
-        return "{$nombre} - {$descripcion}";
+        $usuario = $this->usuario?->usu_nombre ?? 'Empleado';
+        $punto = $this->usuario?->punto?->nombre ?? 'Punto';
+        $turno = $this->turno?->tur_nombre ?? 'Turno';
+        return "$usuario - $turno - $punto";
     }
 
-    public function getUsuarioNombreAttribute(): string
+    protected function getCardAttributes(): array
     {
-        return $this->usuario?->usu_nombre ?? '—';
+        return [
+            'Detalle' => function ($record) {
+                $usuario = $record->usuario?->usu_nombre ?? 'Empleado';
+                $turno = $record->turno?->tur_nombre ?? 'Turno';
+                return "{$usuario}<br><small>{$turno}</small>";
+            },
+        ];
     }
 }
