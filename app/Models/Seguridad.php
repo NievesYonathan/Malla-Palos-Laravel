@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Seguridad extends Model
 {
     protected $primaryKey = "id_seguridad";
+
+    protected $table = "seguridad";
     // Permitir la asignación masiva de todos los campos
     protected $guarded = [];
 

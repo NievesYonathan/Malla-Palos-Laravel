@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('*', function ($view) {
+            $routeName = Route::currentRouteName();
+            $titles = [
+                'dashboard' => 'Home',
+                'users.index' => 'Usuarios',
+                'reports.index' => 'Reportes',
+                'profile.edit' => 'Profile',
+                // Agrega más según tus rutas
+            ];
+
+            $view->with('pageTitle', $titles[$routeName] ?? 'Panel2');
+        });    
     }
 }

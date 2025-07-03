@@ -20,4 +20,9 @@ class Turnos extends Model
             ->as("asignacionTurnos")
             ->withPivot("tur_usu_dia", "tur_usu_fecha");
     }
+
+    public function asignacionTurnos()
+    {
+        return $this->hasMany(Asignacion_Turnos::class, 'turnos_id', 'id_turnos');
+    }
 }

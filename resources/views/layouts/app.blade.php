@@ -14,17 +14,23 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/anteojos.ico') }}"> <!-- Favicon de la página -->
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+        <!-- Favicon de la página -->
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/anteojos.ico') }}">
+
+        <!-- Iconos de Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            @isset($header)
+            @isset($pageTitle)
                 <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" style="color:rgb(255, 255, 255);">
+                        {{ __($pageTitle) }}
                     </div>
                 </header>
             @endisset

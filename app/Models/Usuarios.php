@@ -50,4 +50,14 @@ class Usuarios extends Model
     {
         return $this->belongsToMany(Turnos::class,"asignacion_turnos","turnos_id", "usuarios_num_doc");
     }
+    
+    public function punto(): BelongsTo
+    {
+        return $this->belongsTo(Puntos::class, "usu_punto");
+    }
+
+    public function asignacionTurnos(): HasMany
+    {
+        return $this->hasMany(Asignacion_Turnos::class, "usuarios_num_doc", "num_doc");
+    }
 }

@@ -18,6 +18,10 @@ class Puntos extends Model
         return $this->hasMany(Asignaciones_Personal::class, "punto_origen_id");
     }
 
+    public function usuariosAsignados(): HasMany
+    {
+        return $this->hasMany(Usuarios::class, "usu_punto");
+    }
     public function inventarioHistorico(): HasMany
     {
         return $this->hasMany(Inventario_Historico::class,"punto_id");
